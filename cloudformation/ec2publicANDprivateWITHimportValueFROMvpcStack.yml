@@ -35,7 +35,7 @@ Resources:
   PublicInstanceSG:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
-      VpcId: !ImportValue VPC
+      VpcId: !ImportValue devopsVPC
       GroupDescription: SSH access for IPv4 and IPv6 
       SecurityGroupIngress:
         - Description: 'Inbound IPv4 SSH traffic'
@@ -52,7 +52,7 @@ Resources:
   PrivateInstanceSG:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
-      VpcId: !ImportValue VPC
+      VpcId: !ImportValue devopsVPC
       GroupDescription: SSH access for IPv4 and IPv6 
       SecurityGroupIngress:
         - Description: 'Inbound IPv4 SSH traffic'
