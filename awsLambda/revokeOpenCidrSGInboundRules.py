@@ -23,3 +23,23 @@ response = ec2East.describe_security_groups(
         },
     ],
 )
+
+sgs = response['SecurityGroups']
+sgsWithOpenPorts = []
+
+for i in sgs:
+    # print(i['GroupId'])
+    # print('---------------------------------------------------')
+    sgsWithOpenPorts.append(i['GroupId'])
+
+print(sgsWithOpenPorts)
+
+# revoke 0.0.0.0/0 on port 443 for the given SGs in the list 
+for sg in sgsWithOpenPorts:
+    response = ec2East.revoke_security_group_ingress(
+        CidrIp='0.0.0.0/0',
+        FromPort=443,
+        GroupId= sg,
+        IpProtocol='tcp',
+        ToPort=443,
+    )
