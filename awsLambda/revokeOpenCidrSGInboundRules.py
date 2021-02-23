@@ -23,7 +23,6 @@ response = ec2East.describe_security_groups(
         },
     ],
 )
-
 sgs = response['SecurityGroups']
 sgsWithOpenPorts = []
 
